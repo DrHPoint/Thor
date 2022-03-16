@@ -6,7 +6,7 @@ import { hexConcat } from "@ethersproject/bytes";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signer-with-address";
 
 let Thor : ContractFactory;
-// let thor : Contract;
+let thor : Contract;
 let Thor2 : ContractFactory;
 // let thor2 : Contract;
 let Access : ContractFactory;
@@ -31,7 +31,7 @@ describe("Upgrade", function () {
 
     it("Deploy & Upgrade", async () => {
       
-      let thor = await upgrades.deployProxy(Thor, ["Odinson"]);
+      thor = await upgrades.deployProxy(Thor, ["Odinson"]);
 
       const firstAsk = await thor.askToOdin();
       console.log(firstAsk);
