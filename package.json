@@ -25,6 +25,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.4.2",
     "dotenv": "^15.0.0",
+    "eth-typed-data": "^0.1.0-beta.0",
     "ipfs-http-client": "^56.0.0"
   }
 }
