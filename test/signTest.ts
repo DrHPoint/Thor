@@ -1,5 +1,5 @@
-import { EIP712Domain } from 'eth-typed-data'
-import hre, { deployments, ethers, network } from "hardhat";
+import EIP712Domain from "eth-typed-data";
+import hre, { ethers, network } from "hardhat";
 
 describe("Report", function () {
 
@@ -22,6 +22,8 @@ describe("Report", function () {
         content: 'string',
         date: 'uint256'
     })
+
+    const localAddress = '0xD065f36871A57e650bDDFCE26CD42d1517028172';
 
 
 
@@ -57,13 +59,15 @@ describe("Report", function () {
 
         it("Sign", async () => {
 
-        console.log(await excuse.toSignatureRequest());
+            console.log(await excuse.toSignatureRequest());
 
-        await network.provider.request({
-            method: "hardhat_impersonateAccount",
-            params: [metisWhaleAddress],
-        });
-        const metisWhale = ethers.provider.getSigner(metisWhaleAddress);
+            await network.provider.request({
+                method: "hardhat_impersonateAccount",
+                params: [localAddress],
+            });
+            const SecondAddress = ethers.provider.getSigner(localAddress);
+
+            const signature = excuse.sign(SecondAddress);
 
         });
 
