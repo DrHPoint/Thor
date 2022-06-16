@@ -13,9 +13,9 @@ contract DaiProxyLight is ERC2771Context {
         dai = Dai(token);
     }
 
-    function transfer(address receiver, uint256 amount) public {
-        
-        dai.permit(holder, spender, nonce, expiry, allowed, v, r, s);
+    function transfer(address receiver, uint256 amount, uint8 v, bytes32 r, bytes32 s) public {
+        uint256 nonce = dai.nonces(_msgSender());
+        // dai.permit(_msgSender(), address(this), nonce, now, true, v, r, s);
         dai.transferFrom(_msgSender(), receiver, amount);
     }
 }
